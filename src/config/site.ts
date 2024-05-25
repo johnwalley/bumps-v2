@@ -3,10 +3,11 @@ export const siteConfig = {
   url: "https://www.cambridgebumps.com",
   ogImage: "https://www.cambridgebumps.com/og.jpg",
   description:
-    "Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.",
+    "Bumps charts, statistics, and more.",
   links: {
+    website: "https://www.walley.org.uk",
     twitter: "https://twitter.com/johnwalley",
-    github: "https://github.com/johnwalley/cambridgebumps.com",
+    github: "https://github.com/johnwalley/bumps-results",
   },
 };
 

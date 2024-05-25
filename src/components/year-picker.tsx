@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 
 type YearPickerProps = {
   skipLength: number;
@@ -25,7 +26,7 @@ export function YearPicker({
   spacing = 0,
 }: PropsWithChildren<YearPickerProps>) {
   const ref = useRef<HTMLDivElement>(null!);
-  const selectedRef = useRef<HTMLLIElement>(null!);
+  const selectedRef = useRef<HTMLButtonElement>(null!);
 
   const [left, setLeft] = useState(false);
   const [right, setRight] = useState(false);
@@ -60,25 +61,26 @@ export function YearPicker({
     <section className="relative bg-white pt-3 pb-4 px-0">
       <div className="p-0 m-0 border-0">
         <div className="relative">
-          <div
+          <Tabs
             ref={ref}
             className="overflow-x-scroll scroll-smooth"
             style={{ scrollbarWidth: "none" }}
+            value={`${focusElement}`}
           >
-            <ul className="list-none flex">
+            <TabsList className="">
               {Children.map(children, (child, i) => (
-                <div className="Row">
-                  <li
-                    key={i}
-                    ref={i === focusElement ? selectedRef : null}
-                    className="mr-4"
-                  >
-                    {child}
-                  </li>
-                </div>
+                <TabsTrigger
+                  key={i}
+                  ref={i === focusElement ? selectedRef : null}
+                  className="h-[1.45rem] rounded-sm px-2 text-sm"
+                  value={`${i}`}
+                  asChild
+                >
+                  {child}
+                </TabsTrigger>
               ))}
-            </ul>
-          </div>
+            </TabsList>
+          </Tabs>
           {!left && (
             <>
               <div className="bg-gradient-to-r from-white w-24 absolute left-0 top-0 right-auto h-full pointer-events-none"></div>

@@ -14,23 +14,22 @@ export default function Home() {
   return (
     <div className="container relative">
       <PageHeader>
-        <PageHeaderHeading>Build your component library</PageHeaderHeading>
+        <PageHeaderHeading>
+          There is nothing — absolutely nothing — half so much worth doing as
+          simply messing about in boats.
+        </PageHeaderHeading>
         <PageHeaderDescription>
-          Beautifully designed components that you can copy and paste into your
-          apps. Accessible. Customizable. Open Source.
+          Bumps charts, statistics, and more.
         </PageHeaderDescription>
         <PageActions>
-          <Link href="/docs" className={cn(buttonVariants())}>
-            Get Started
+          <Link href="/single-year/" className={cn(buttonVariants())}>
+            Bumps charts
           </Link>
           <Link
-            target="_blank"
-            rel="noreferrer"
-            href={siteConfig.links.github}
+            href="/about"
             className={cn(buttonVariants({ variant: "outline" }))}
           >
-            <Icons.gitHub className="mr-2 h-4 w-4" />
-            GitHub
+            What&apos;s it all about?
           </Link>
         </PageActions>
       </PageHeader>

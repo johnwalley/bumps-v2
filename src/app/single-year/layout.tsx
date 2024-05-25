@@ -46,7 +46,7 @@ export default function Layout({
     <div className="container relative">
       <ExamplesNav />
       <Tabs
-        defaultValue="men"
+        value={segments[1]}
         className="relative grid w-full scroll-m-20 gap-4"
       >
         <TabsList className="h-7 rounded-md p-0 px-[calc(theme(spacing.1)_-_2px)] py-[theme(spacing.1)] sm:flex">
@@ -84,16 +84,14 @@ export default function Layout({
             </TabsTrigger>
           </TabsList>
         </Tabs> */}
-      <YearPicker skipLength={576} focusElement={focusElement} position="center">
+      <YearPicker
+        skipLength={576}
+        focusElement={focusElement}
+        position="center"
+      >
         {years.map((year, i) => (
           <Link
             key={year}
-            className={clsx(
-              "border-solid border-b-4 flex flex-col justify-center cursor-pointer p-1 text-center text-sm",
-              i === focusElement
-                ? "border-lime-800 font-bold"
-                : "border-white hover:border-zinc-300 font-normal"
-            )}
             href={`/single-year/${segments[0]}/${segments[1]}/${year}`}
           >
             <div>{year}</div>

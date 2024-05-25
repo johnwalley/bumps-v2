@@ -29,29 +29,18 @@ export function MainNav() {
               : "text-foreground/60"
           )}
         >
-          Single-year results
+          Charts
         </Link>
         <Link
-          href="/multi-year"
+          href="/about"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/multi-year")
+            pathname?.startsWith("/about")
               ? "text-foreground"
               : "text-foreground/60"
           )}
         >
-          Multi-year results
-        </Link>
-        <Link
-          href="/statistics"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/statistics")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Statistics
+          What&apos;s it all about?
         </Link>
       </nav>
     </div>

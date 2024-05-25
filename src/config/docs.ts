@@ -8,17 +8,17 @@ interface DocsConfig {
 export const docsConfig: DocsConfig = {
   mainNav: [
     {
-      title: "Single-year results",
+      title: "Charts",
       href: "/single-year",
     },
     {
-      title: "Multi-year results",
-      href: "/multi-year",
+      title: "What's it all about?",
+      href: "/about",
     },
   ],
   sidebarNav: [
     {
-      title: "Single-year results",
+      title: "Events",
       items: [
         {
           title: "Eights",
@@ -30,19 +30,19 @@ export const docsConfig: DocsConfig = {
           href: "/single-year/lents",
           items: [],
         },
-      ],
-    },
-    {
-      title: "Multi-year results",
-      items: [
         {
-          title: "Eights",
-          href: "/multi-year/eights",
+          title: "Mays",
+          href: "/single-year/mays",
           items: [],
         },
         {
-          title: "Lents",
-          href: "/multi-year/lents",
+          title: "Torpids",
+          href: "/single-year/torpids",
+          items: [],
+        },
+        {
+          title: "Town",
+          href: "/single-year/town",
           items: [],
         },
       ],
