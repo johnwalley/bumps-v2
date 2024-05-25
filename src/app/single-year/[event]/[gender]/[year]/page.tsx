@@ -17,7 +17,7 @@ export default async function Home({
 
   return (
     <div className="w-full flex flex-col items-center">
-      <div className="w-full md:w-[520]">
+      <div className="w-full min-w-[320px] max-w-[520px]">
         <BumpsChart data={data} />
       </div>
     </div>
