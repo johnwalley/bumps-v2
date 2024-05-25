@@ -38,8 +38,6 @@ export default function Layout({
 
   const focusElement = years.findIndex((year) => year === segments[2]);
 
-  console.log(focusElement, years.length);
-
   return (
     <div className="container relative">
       <div className="flex flex-col space-y-2 mt-2 mb-4">
