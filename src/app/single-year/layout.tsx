@@ -25,11 +25,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { Button } from "@/components/ui/button";
 import { ExamplesNav } from "@/components/examples-nav";
-
-const years = [
-  2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-  2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024,
-];
+import results from "./data/results.json";
 
 export default function Layout({
   children,
@@ -38,66 +34,57 @@ export default function Layout({
 }>) {
   const segments = useSelectedLayoutSegments();
 
-  const focusElement = years.findIndex(
-    (year) => year === parseInt(segments[2])
-  );
+  const years: string[] = (results as any)[segments[0]][segments[1]];
+
+  const focusElement = years.findIndex((year) => year === segments[2]);
+
+  console.log(focusElement, years.length);
 
   return (
     <div className="container relative">
-      <ExamplesNav />
-      <Tabs
-        value={segments[1]}
-        className="relative grid w-full scroll-m-20 gap-4"
-      >
-        <TabsList className="h-7 rounded-md p-0 px-[calc(theme(spacing.1)_-_2px)] py-[theme(spacing.1)] sm:flex">
-          <TabsTrigger
-            value="men"
-            className="h-[1.45rem] rounded-sm px-2 text-sm"
-            asChild
-          >
-            <Link href={`/single-year/${segments[0]}/men/${segments[2]}`}>
-              Men
-            </Link>
-          </TabsTrigger>
-          <TabsTrigger
-            value="women"
-            className="h-[1.45rem] rounded-sm px-2 text-sm"
-            asChild
-          >
-            <Link href={`/single-year/${segments[0]}/women/${segments[2]}`}>
-              Women
-            </Link>
-          </TabsTrigger>
-        </TabsList>
-      </Tabs>
-      {/*         <Tabs defaultValue="men" className="w-[400px]">
-          <TabsList>
-            <TabsTrigger value="men" asChild>
+      <div className="flex flex-col space-y-2 mt-2 mb-4">
+        <ExamplesNav />
+        <Tabs
+          value={segments[1]}
+          className="relative grid w-full scroll-m-20 gap-4"
+        >
+          <TabsList className="h-7 rounded-md p-0 px-[calc(theme(spacing.1)_-_2px)] py-[theme(spacing.1)] sm:flex">
+            <TabsTrigger
+              value="men"
+              className="h-[1.45rem] rounded-sm px-2 text-sm"
+              asChild
+            >
               <Link href={`/single-year/${segments[0]}/men/${segments[2]}`}>
                 Men
               </Link>
             </TabsTrigger>
-            <TabsTrigger value="women">
+            <TabsTrigger
+              value="women"
+              className="h-[1.45rem] rounded-sm px-2 text-sm"
+              asChild
+            >
               <Link href={`/single-year/${segments[0]}/women/${segments[2]}`}>
                 Women
               </Link>
             </TabsTrigger>
           </TabsList>
-        </Tabs> */}
-      <YearPicker
-        skipLength={576}
-        focusElement={focusElement}
-        position="center"
-      >
-        {years.map((year, i) => (
-          <Link
-            key={year}
-            href={`/single-year/${segments[0]}/${segments[1]}/${year}`}
-          >
-            <div>{year}</div>
-          </Link>
-        ))}
-      </YearPicker>
+        </Tabs>
+        <YearPicker
+          key={`${segments[0]}/${segments[1]}`}
+          skipLength={576}
+          focusElement={focusElement}
+          position="center"
+        >
+          {years.map((year, i) => (
+            <Link
+              key={year}
+              href={`/single-year/${segments[0]}/${segments[1]}/${year}`}
+            >
+              {year}
+            </Link>
+          ))}
+        </YearPicker>
+      </div>
       {children}
     </div>
   );

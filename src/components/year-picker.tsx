@@ -10,6 +10,7 @@ import {
   useState,
 } from "react";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
+import { ChevronRightIcon, ChevronLeftIcon } from "@radix-ui/react-icons";
 
 type YearPickerProps = {
   skipLength: number;
@@ -37,6 +38,7 @@ export function YearPicker({
       selectedRef.current.scrollIntoView({
         inline: position,
         block: "nearest",
+        behavior: "instant",
       });
   }, [position]);
 
@@ -58,7 +60,7 @@ export function YearPicker({
   }, []);
 
   return (
-    <section className="relative bg-white pt-3 pb-4 px-0">
+    <section className="relative bg-white px-0">
       <div className="p-0 m-0 border-0">
         <div className="relative">
           <Tabs
