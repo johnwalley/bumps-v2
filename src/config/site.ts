@@ -6,7 +6,7 @@ export const siteConfig = {
     "Bumps charts, statistics, and more.",
   links: {
     website: "https://www.walley.org.uk",
-    twitter: "https://twitter.com/johnwalley",
+    twitter: "https://twitter.com/johnmwalley",
     github: "https://github.com/johnwalley/bumps-results",
   },
 };

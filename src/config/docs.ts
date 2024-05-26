@@ -9,7 +9,7 @@ export const docsConfig: DocsConfig = {
   mainNav: [
     {
       title: "Charts",
-      href: "/single-year",
+      href: "/charts",
     },
     {
       title: "What's it all about?",
@@ -22,27 +22,27 @@ export const docsConfig: DocsConfig = {
       items: [
         {
           title: "Eights",
-          href: "/single-year/eights",
+          href: "/charts/eights",
           items: [],
         },
         {
           title: "Lents",
-          href: "/single-year/lents",
+          href: "/charts/lents",
           items: [],
         },
         {
           title: "Mays",
-          href: "/single-year/mays",
+          href: "/charts/mays",
           items: [],
         },
         {
           title: "Torpids",
-          href: "/single-year/torpids",
+          href: "/charts/torpids",
           items: [],
         },
         {
           title: "Town",
-          href: "/single-year/town",
+          href: "/charts/town",
           items: [],
         },
       ],

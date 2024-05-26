@@ -1,5 +1,10 @@
-import { BumpsChart } from "@/components/bumps-chart";
 import results from "../../../data/results.json";
+import dynamic from "next/dynamic";
+
+const BumpsChart = dynamic(() => import("@/components/bumps-chart"), {
+  ssr: false,
+});
+
 export default async function Home({
   params,
 }: {
@@ -12,11 +17,15 @@ export default async function Home({
   const data = await res.json();
 
   if (!data || data.crews.length === 0) {
-    return <div>We have no results to show for this year</div>;
+    return (
+      <div className="text-center mb-4">
+        We have no results to show for this year
+      </div>
+    );
   }
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center mb-4">
       <div className="w-full min-w-[320px] max-w-[520px]">
         <BumpsChart data={data} />
       </div>
@@ -37,8 +46,6 @@ export async function generateStaticParams() {
       }))
     )
   );
-
-  console.log(paths);
 
   return paths;
 }

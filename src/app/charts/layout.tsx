@@ -34,7 +34,7 @@ export default function Layout({
 }>) {
   const segments = useSelectedLayoutSegments();
 
-  const years: string[] = (results as any)[segments[0]][segments[1]];
+  const years: string[] = (results as any)["eights"]["men"];
 
   const focusElement = years.findIndex((year) => year === segments[2]);
 
@@ -52,7 +52,7 @@ export default function Layout({
               className="h-[1.45rem] rounded-sm px-2 text-sm"
               asChild
             >
-              <Link href={`/single-year/${segments[0]}/men/${segments[2]}`}>
+              <Link href={`/charts/${segments[0]}/men/${segments[2]}`}>
                 Men
               </Link>
             </TabsTrigger>
@@ -61,14 +61,13 @@ export default function Layout({
               className="h-[1.45rem] rounded-sm px-2 text-sm"
               asChild
             >
-              <Link href={`/single-year/${segments[0]}/women/${segments[2]}`}>
+              <Link href={`/charts/${segments[0]}/women/${segments[2]}`}>
                 Women
               </Link>
             </TabsTrigger>
           </TabsList>
         </Tabs>
         <YearPicker
-          key={`${segments[0]}/${segments[1]}`}
           skipLength={576}
           focusElement={focusElement}
           position="center"
@@ -76,7 +75,7 @@ export default function Layout({
           {years.map((year, i) => (
             <Link
               key={year}
-              href={`/single-year/${segments[0]}/${segments[1]}/${year}`}
+              href={`/charts/${segments[0]}/${segments[1]}/${year}`}
             >
               {year}
             </Link>

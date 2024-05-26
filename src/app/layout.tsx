@@ -29,7 +29,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SiteHeader />
         <main className="flex-1">{children}</main>
-        <SiteFooter />
+        {/* <SiteFooter /> */}
       </body>
     </html>
   );

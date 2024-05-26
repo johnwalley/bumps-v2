@@ -17,23 +17,23 @@ export function ExamplesNav({ className, ...props }: ExamplesNavProps) {
   const examples = [
     {
       name: "Eights",
-      href: `/single-year/eights/${segments[1]}/${segments[2]}`,
+      href: `/charts/eights/${segments[1]}/${segments[2]}`,
     },
     {
       name: "Lents",
-      href: `/single-year/lents/${segments[1]}/${segments[2]}`,
+      href: `/charts/lents/${segments[1]}/${segments[2]}`,
     },
     {
       name: "Mays",
-      href: `/single-year/mays/${segments[1]}/${segments[2]}`,
+      href: `/charts/mays/${segments[1]}/${segments[2]}`,
     },
     {
       name: "Torpids",
-      href: `/single-year/torpids/${segments[1]}/${segments[2]}`,
+      href: `/charts/torpids/${segments[1]}/${segments[2]}`,
     },
     {
       name: "Town",
-      href: `/single-year/town/${segments[1]}/${segments[2]}`,
+      href: `/charts/town/${segments[1]}/${segments[2]}`,
     },
   ];
 

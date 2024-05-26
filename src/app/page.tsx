@@ -22,7 +22,7 @@ export default function Home() {
           Bumps charts, statistics, and more.
         </PageHeaderDescription>
         <PageActions>
-          <Link href="/single-year/" className={cn(buttonVariants())}>
+          <Link href="/charts/" className={cn(buttonVariants())}>
             Bumps charts
           </Link>
           <Link
