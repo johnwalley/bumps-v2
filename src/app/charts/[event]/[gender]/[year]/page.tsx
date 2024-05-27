@@ -34,6 +34,7 @@ export default async function Home({
 }
 
 export async function generateStaticParams() {
+
   const events = ["eights", "lents", "mays", "torpids", "town"];
   const genders = ["men", "women"];
 

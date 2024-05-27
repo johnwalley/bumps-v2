@@ -1,8 +1,13 @@
 "use client";
 
-import { TriangleDownIcon } from "@radix-ui/react-icons";
+import { MagnifyingGlassIcon, TriangleDownIcon } from "@radix-ui/react-icons";
 
-import { useSelectedLayoutSegments } from "next/navigation";
+import {
+  usePathname,
+  useRouter,
+  useSearchParams,
+  useSelectedLayoutSegments,
+} from "next/navigation";
 import { YearPicker } from "@/components/year-picker";
 import {
   Select,
@@ -26,6 +31,17 @@ import clsx from "clsx";
 import { Button } from "@/components/ui/button";
 import { ExamplesNav } from "@/components/examples-nav";
 import results from "./data/results.json";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { ModelSelector } from "@/components/event-selector";
+import { models, types } from "./data/models";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Suspense, useCallback } from "react";
+import { Blades } from "./components/blades";
 
 export default function Layout({
   children,
@@ -39,8 +55,8 @@ export default function Layout({
   const focusElement = years.findIndex((year) => year === segments[2]);
 
   return (
-    <div className="container relative">
-      <div className="flex flex-col space-y-2 mt-2 mb-4">
+    <div className="container relative lg:grid items-stretch gap-6 lg:grid-cols-[1fr_400px]">
+      <div className="lg:hidden flex flex-col space-y-2 mt-2 mb-4">
         <ExamplesNav />
         <Tabs
           value={segments[1]}
@@ -81,6 +97,52 @@ export default function Layout({
             </Link>
           ))}
         </YearPicker>
+      </div>
+      <div className="hidden lg:block order-2 border-l py-4">
+        <div className="flex flex-col space-y-2 px-4">
+          <div>
+            <ModelSelector types={types} models={models} />
+          </div>
+          <div>
+            <HoverCard openDelay={200}>
+              <HoverCardTrigger asChild>
+                <span className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Year
+                </span>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-[320px] text-sm" side="left">
+                The first recorded bumps race was 1815.
+              </HoverCardContent>
+            </HoverCard>
+            <YearPicker
+              skipLength={576}
+              focusElement={focusElement}
+              position="center"
+            >
+              {years.map((year, i) => (
+                <Link
+                  key={year}
+                  href={`/charts/${segments[0]}/${segments[1]}/${year}`}
+                >
+                  {year}
+                </Link>
+              ))}
+            </YearPicker>
+          </div>
+          <div className="items-top flex space-x-2">
+            <Suspense>
+              <Blades />
+            </Suspense>
+          </div>
+          <div className="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <form>
+              <div className="relative">
+                <MagnifyingGlassIcon className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input placeholder="Search" className="pl-8" />
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
       {children}
     </div>
