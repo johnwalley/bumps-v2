@@ -1,5 +1,24 @@
-import results from "../../../data/results.json";
+import summary from "../../../data/results.json";
 import dynamic from "next/dynamic";
+import results from "../../../../../data/data.json";
+import { transformData, joinEvents } from "bumps-results-tools";
+import { Event } from "bumps-results-tools/dist/types";
+
+const SET = {
+  EIGHTS: "Summer Eights",
+  TORPIDS: "Torpids",
+  LENTS: "Lent Bumps",
+  MAYS: "May Bumps",
+  TOWN: "Town Bumps",
+};
+
+const set = {
+  eights: SET.EIGHTS,
+  torpids: SET.TORPIDS,
+  lents: SET.LENTS,
+  mays: SET.MAYS,
+  town: SET.TOWN,
+};
 
 const BumpsChart = dynamic(() => import("@/components/bumps-chart"), {
   ssr: false,
@@ -10,13 +29,24 @@ export default async function Home({
 }: {
   params: { event: string; gender: string; year: string };
 }) {
-  const res = await fetch(
-    `https://api.cambridgebumps.com/api/history?event=${params.event}&gender=${params.gender}&start=${params.year}&end=${params.year}`
-  );
+  const data = results
+    .filter(
+      (result) => result.gender.toLowerCase() === params.gender.toLowerCase()
+    )
+    .filter(
+      (result) => result.small.toLowerCase() === params.event.toLowerCase()
+    )
+    .filter((result) => result.year >= +params.year)
+    .filter((result) => result.year <= +params.year)
+    .map(transformData);
 
-  const data = await res.json();
+  const joinedEvents = joinEvents(data, params.event, params.gender);
 
-  if (!data || data.crews.length === 0) {
+  joinedEvents.small = params.event;
+  joinedEvents.gender = params.gender;
+  joinedEvents.set = set[params.event as keyof typeof set];
+
+  if (!joinedEvents || joinedEvents.crews.length === 0) {
     return (
       <div className="text-center mb-4">
         We have no results to show for this year
@@ -27,20 +57,19 @@ export default async function Home({
   return (
     <div className="w-full flex flex-col items-center mb-4">
       <div className="w-full min-w-[320px] max-w-[520px]">
-        <BumpsChart data={data} />
+        <BumpsChart data={joinedEvents} />
       </div>
     </div>
   );
 }
 
 export async function generateStaticParams() {
-
   const events = ["eights", "lents", "mays", "torpids", "town"];
   const genders = ["men", "women"];
 
   const paths = events.flatMap((event) =>
     genders.flatMap((gender) =>
-      (results as any)[event][gender].map((year: string) => ({
+      (summary as any)[event][gender].map((year: string) => ({
         event,
         gender,
         year,

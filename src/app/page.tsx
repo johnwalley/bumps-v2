@@ -1,4 +1,4 @@
-import { Icons } from "@/components/icons";
+import { Announcement } from "@/components/announcement";
 import {
   PageActions,
   PageHeader,
@@ -6,14 +6,16 @@ import {
   PageHeaderHeading,
 } from "@/components/page-header";
 import { buttonVariants } from "@/components/ui/button";
-import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
+import { Photos } from "@/components/photos";
 
 export default function Home() {
   return (
     <div className="container relative">
       <PageHeader>
+        <Announcement />
         <PageHeaderHeading>
           There is nothing — absolutely nothing — half so much worth doing as
           simply messing about in boats.
@@ -33,6 +35,9 @@ export default function Home() {
           </Link>
         </PageActions>
       </PageHeader>
+      <section className="pb-20">
+        <Photos />
+      </section>
     </div>
   );
 }
