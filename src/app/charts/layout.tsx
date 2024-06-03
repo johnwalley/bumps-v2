@@ -1,6 +1,8 @@
 "use client";
 
 import { MagnifyingGlassIcon, TriangleDownIcon } from "@radix-ui/react-icons";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import {
   usePathname,
@@ -12,7 +14,9 @@ import { YearPicker } from "@/components/year-picker";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -48,6 +52,8 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
+
   const segments = useSelectedLayoutSegments();
 
   const years: string[] = (results as any)["eights"]["men"];
@@ -100,9 +106,40 @@ export default function Layout({
       </div>
       <div className="hidden lg:block order-2 border-l py-4">
         <div className="flex flex-col space-y-2 px-4">
-          <div>
-            <ModelSelector types={types} models={models} />
-          </div>
+          <Select
+            value={segments[0]}
+            onValueChange={(value) => {
+              router.push(`/charts/${value}/${segments[1]}/${segments[2]}`);
+            }}
+          >
+            <SelectTrigger className="w-[280px]">
+              <SelectValue placeholder="Select an event" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Cambridge</SelectLabel>
+                <SelectItem value="lents">Lent Bumps</SelectItem>
+                <SelectItem value="mays">May Bumps</SelectItem>
+                <SelectItem value="town">Town Bumps</SelectItem>
+              </SelectGroup>
+              <SelectGroup>
+                <SelectLabel>Oxford</SelectLabel>
+                <SelectItem value="torpids">Torpids</SelectItem>
+                <SelectItem value="eights">Summer Eights</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <Label htmlFor="model">Gender</Label>
+          <RadioGroup defaultValue="men">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="men" id="men" />
+              <Label htmlFor="men">Men</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="women" id="women" />
+              <Label htmlFor="women">Women</Label>
+            </div>
+          </RadioGroup>
           <div>
             <HoverCard openDelay={200}>
               <HoverCardTrigger asChild>
