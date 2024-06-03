@@ -40,7 +40,6 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { ModelSelector } from "@/components/event-selector";
 import { models, types } from "./data/models";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
