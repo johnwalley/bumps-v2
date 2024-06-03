@@ -45,6 +45,28 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Suspense, useCallback } from "react";
 import { Blades } from "./components/blades";
+import { Spoons } from "./components/spoons";
+
+const SET = {
+  EIGHTS: "Summer Eights",
+  TORPIDS: "Torpids",
+  LENTS: "Lent Bumps",
+  MAYS: "May Bumps",
+  TOWN: "Town Bumps",
+};
+
+const set = {
+  eights: SET.EIGHTS,
+  torpids: SET.TORPIDS,
+  lents: SET.LENTS,
+  mays: SET.MAYS,
+  town: SET.TOWN,
+};
+
+const genderMap = {
+  men: "Men",
+  women: "Women",
+};
 
 export default function Layout({
   children,
@@ -104,7 +126,8 @@ export default function Layout({
         </YearPicker>
       </div>
       <div className="hidden lg:block order-2 border-l py-4">
-        <div className="flex flex-col space-y-2 px-4">
+        <div className="flex flex-col space-y-3 px-4">
+          <Label htmlFor="event">Event</Label>
           <Select
             value={segments[0]}
             onValueChange={(value) => {
@@ -128,18 +151,27 @@ export default function Layout({
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Label htmlFor="model">Gender</Label>
-          <RadioGroup defaultValue="men">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="men" id="men" />
-              <Label htmlFor="men">Men</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="women" id="women" />
-              <Label htmlFor="women">Women</Label>
-            </div>
-          </RadioGroup>
-          <div>
+          <div className="space-y-3">
+            <Label htmlFor="gender">Gender</Label>
+            <RadioGroup
+              id="gender"
+              className="flex flex-col space-y-1"
+              value={segments[1]}
+              onValueChange={(value) => {
+                router.push(`/charts/${segments[0]}/${value}/${segments[2]}`);
+              }}
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="men" id="men" />
+                <Label htmlFor="men">Men</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="women" id="women" />
+                <Label htmlFor="women">Women</Label>
+              </div>
+            </RadioGroup>
+          </div>
+          <div className="space-y-3">
             <HoverCard openDelay={200}>
               <HoverCardTrigger asChild>
                 <span className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -151,7 +183,7 @@ export default function Layout({
               </HoverCardContent>
             </HoverCard>
             <YearPicker
-              skipLength={576}
+              skipLength={256}
               focusElement={focusElement}
               position="center"
             >
@@ -170,17 +202,23 @@ export default function Layout({
               <Blades />
             </Suspense>
           </div>
-          <div className="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <form>
-              <div className="relative">
-                <MagnifyingGlassIcon className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Search" className="pl-8" />
-              </div>
-            </form>
+          <div className="items-top flex space-x-2">
+            <Suspense>
+              <Spoons />
+            </Suspense>
           </div>
         </div>
       </div>
-      {children}
+      <div>
+        <div className="hidden lg:block">
+          <h1 className="scroll-m-20 pt-2 pb-4 text-3xl font-semibold tracking-tight text-center">{`${
+            set[segments[0] as keyof typeof set]
+          } - ${genderMap[segments[1] as keyof typeof genderMap]} - ${
+            segments[2]
+          }`}</h1>
+        </div>
+        {children}
+      </div>
     </div>
   );
 }

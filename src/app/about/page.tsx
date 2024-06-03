@@ -19,6 +19,11 @@ import image_1 from "./images/motorway-bridge.jpg";
 import bump from "./images/bump.jpg";
 import willow from "./images/willow.jpg";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: `What's it all about?`,
+};
 
 export default function About() {
   return (
@@ -32,11 +37,11 @@ export default function About() {
           </div>
           <div className="pb-12 pt-8">
             <p className="leading-7 [&:not(:first-child)]:mt-6">
-              The river in Cambridge presents a unique challenge for hosting
+              The river in {`${process.env.NEXT_PUBLIC_TITLE}`} presents a unique challenge for hosting
               traditional rowing competitions. Its meandering course and limited
               width render standard side-by-side racing impractical. To
               accommodate the constraints of the river and to enable numerous
-              crews to participate, the Oxford Bumps races emerged. This format,
+              crews to participate, the Bumps races emerged. This format,
               different from conventional regattas, was developed to allow a
               large number of boats to compete in a dynamic and exciting manner,
               turning the river&rsquo;s limitations into a unique aspect of the
@@ -92,11 +97,7 @@ export default function About() {
               they row back to their boathouses.
             </p>
 
-            <Image
-              className="mt-4"
-              src={willow}
-              alt="Crew who have bumped"
-            />
+            <Image className="mt-4" src={willow} alt="Crew who have bumped" />
 
             <h2
               className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0"
@@ -135,6 +136,31 @@ export default function About() {
                   <p className="leading-7 [&:not(:first-child)]:mt-6">
                     In Cambridge, if you&apos;re new to Bumps, I would recommend
                     the Plough pub in Fen Ditton.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="faq-3">
+                <AccordionTrigger>
+                  Any other bumps websites you would recommend?
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="leading-7 [&:not(:first-child)]:mt-6">
+                    Plenty! For historical results, particularly multi-year, you
+                    should check out Tim Granger&apos;s{" "}
+                    <a href="http://www.mcshane.org/bumps/">Bumps charts</a>.
+                  </p>
+                  <p className="leading-7 [&:not(:first-child)]:mt-6">
+                    For the authoritative place to go for Oxford bumps, check
+                    out Anu Dudhia&apos;s{" "}
+                    <a href="http://eodg.atm.ox.ac.uk/user/dudhia/rowing/bumps/">
+                      Oxford Bumps Charts
+                    </a>
+                    .
+                  </p>
+                  <p className="leading-7 [&:not(:first-child)]:mt-6">
+                    For live results as they happen, check out{" "}
+                    <a href="https://bumps.camfm.co.uk/">Cam FM</a> and{" "}
+                    <a href="https://bumps.live/">Oxford Bumps</a>.
                   </p>
                 </AccordionContent>
               </AccordionItem>

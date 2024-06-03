@@ -8,7 +8,6 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import Image from "next/image";
 import { Photos } from "@/components/photos";
 
 export default function Home() {

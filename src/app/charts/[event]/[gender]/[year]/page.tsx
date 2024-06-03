@@ -2,6 +2,7 @@ import summary from "../../../data/results.json";
 import dynamic from "next/dynamic";
 import results from "../../../../../data/data.json";
 import { transformData, joinEvents } from "bumps-results-tools";
+import { Metadata, ResolvingMetadata } from "next";
 
 const SET = {
   EIGHTS: "Summer Eights",
@@ -19,15 +20,32 @@ const set = {
   town: SET.TOWN,
 };
 
+const genderMap = {
+  men: "Men",
+  women: "Women",
+};
+
+type Props = {
+  params: { event: string; gender: string; year: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const event = params.event;
+  const gender = params.gender;
+  const year = params.year;
+
+  return {
+    title: `${set[event as keyof typeof set]} - ${
+      genderMap[gender as keyof typeof genderMap]
+    } - ${year}`,
+  };
+}
+
 const BumpsChart = dynamic(() => import("@/components/bumps-chart"), {
   ssr: false,
 });
 
-export default async function Home({
-  params,
-}: {
-  params: { event: string; gender: string; year: string };
-}) {
+export default async function Home({ params }: Props) {
   const data = results
     .filter(
       (result) => result.gender.toLowerCase() === params.gender.toLowerCase()

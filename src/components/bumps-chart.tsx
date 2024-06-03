@@ -19,7 +19,11 @@ export default function BumpsChart({ data }: { data: any }) {
       className={classes.chart}
       style={{ visibility: visible ? "visible" : "hidden" }}
     >
-      <Chart data={data} blades={searchParams.get("blades") === "true"} />
+      <Chart
+        data={data}
+        blades={searchParams.get("blades") === "true"}
+        spoons={searchParams.get("spoons") === "true"}
+      />
     </div>
   );
 }
