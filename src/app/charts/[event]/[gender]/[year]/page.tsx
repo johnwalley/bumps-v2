@@ -2,7 +2,6 @@ import summary from "../../../data/results.json";
 import dynamic from "next/dynamic";
 import results from "../../../../../data/data.json";
 import { transformData, joinEvents } from "bumps-results-tools";
-import { Event } from "bumps-results-tools/dist/types";
 
 const SET = {
   EIGHTS: "Summer Eights",
