@@ -34,7 +34,7 @@ export default function Home() {
           </Link>
         </PageActions>
       </PageHeader>
-      <section className="pb-20">
+      <section className="-mx-4 pb-20">
         <Photos />
       </section>
     </div>
