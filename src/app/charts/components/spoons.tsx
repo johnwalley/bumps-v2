@@ -42,7 +42,7 @@ export const Spoons = () => {
           Highlight spoons
         </label>
         <p className="text-sm text-muted-foreground">
-          Crews who have gone donw every day are highlighted.
+          Crews who have gone down every day are highlighted.
         </p>
       </div>
     </>

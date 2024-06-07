@@ -40,7 +40,6 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { models, types } from "./data/models";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Suspense, useCallback } from "react";
@@ -182,6 +181,15 @@ export default function Layout({
                 The first recorded bumps race was 1815.
               </HoverCardContent>
             </HoverCard>
+            <Link
+              href={`/charts/${segments[0]}/${segments[1]}/${
+                (results as any)[segments[0]][segments[1]][
+                  (results as any)[segments[0]][segments[1]].length - 1
+                ]
+              }`}
+            >
+              Latest
+            </Link>
             <YearPicker
               skipLength={256}
               focusElement={focusElement}
