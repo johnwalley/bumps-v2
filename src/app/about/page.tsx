@@ -134,8 +134,8 @@ export default function About() {
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="leading-7 [&:not(:first-child)]:mt-6">
-                    In Cambridge, if you&apos;re new to Bumps, I would recommend
-                    the Plough pub in Fen Ditton.
+                    In Cambridge, if you&apos;re new to Bumps, I would recommend{" "}
+                    <a href="https://www.theploughfenditton.co.uk/">The Plough</a> in Fen Ditton.
                   </p>
                 </AccordionContent>
               </AccordionItem>
