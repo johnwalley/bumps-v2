@@ -81,7 +81,7 @@ export default function Layout({
   const focusElement = years.findIndex((year) => year === segments[2]);
 
   return (
-    <div className="container relative lg:grid items-stretch gap-6 lg:grid-cols-[1fr_400px]">
+    <div className="w-full px-2 mx-auto relative lg:grid items-stretch gap-6 lg:grid-cols-[1fr_400px]">
       <div className="lg:hidden flex flex-col space-y-2 mt-2 mb-4">
         <EventsNav />
         <Tabs
@@ -181,7 +181,7 @@ export default function Layout({
                 The first recorded bumps race was 1815.
               </HoverCardContent>
             </HoverCard>
-{/*             <Link
+            {/*             <Link
               href={`/charts/${segments[0]}/${segments[1]}/${
                 (results as any)[segments[0]][segments[1]][
                   (results as any)[segments[0]][segments[1]].length - 1

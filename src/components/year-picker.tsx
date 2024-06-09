@@ -33,13 +33,24 @@ export function YearPicker({
   const [right, setRight] = useState(false);
 
   useEffect(() => {
-    selectedRef.current &&
-      selectedRef.current.scrollIntoView &&
-      selectedRef.current.scrollIntoView({
-        inline: position,
-        block: "nearest",
-        behavior: "instant",
-      });
+    const f = () => {
+      console.log("ahoy");
+      selectedRef.current &&
+        selectedRef.current.scrollIntoView &&
+        selectedRef.current.scrollIntoView({
+          inline: position,
+          block: "nearest",
+          behavior: "instant",
+        });
+    };
+
+    window.addEventListener("resize", f);
+
+    f();
+
+    return () => {
+      window.removeEventListener("resize", f);
+    };
   }, [position]);
 
   useEffect(() => {
