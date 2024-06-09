@@ -8,13 +8,13 @@ import { cn } from "@/lib/utils";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 
-interface ExamplesNavProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface EventsNavProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function ExamplesNav({ className, ...props }: ExamplesNavProps) {
+export function EventsNav({ className, ...props }: EventsNavProps) {
   const pathname = usePathname();
   const segments = useSelectedLayoutSegments();
 
-  const examples = [
+  const events = [
     {
       name: "Eights",
       href: `/charts/eights/${segments[1]}/${segments[2]}`,
@@ -45,24 +45,24 @@ export function ExamplesNav({ className, ...props }: ExamplesNavProps) {
           className="relative grid w-full scroll-m-20 gap-4"
         >
           <TabsList className="h-7 rounded-md p-0 px-[calc(theme(spacing.1)_-_2px)] py-[theme(spacing.1)] sm:flex">
-            {examples.map((example, index) => (
+            {events.map((event, index) => (
               <TabsTrigger
-                key={example.href}
-                value={example.name.toLowerCase()}
+                key={event.href}
+                value={event.name.toLowerCase()}
                 className="h-[1.45rem] rounded-sm px-2 text-sm"
                 asChild
               >
                 <Link
-                  href={example.href}
+                  href={event.href}
                   className={cn(
                     "flex h-7 items-center justify-center rounded-full text-center text-sm transition-colors hover:text-primary",
-                    pathname?.startsWith(example.href) ||
+                    pathname?.startsWith(event.href) ||
                       (index === 0 && pathname === "/")
                       ? "bg-muted font-medium text-primary"
                       : "text-muted-foreground"
                   )}
                 >
-                  {example.name}
+                  {event.name}
                 </Link>
               </TabsTrigger>
             ))}

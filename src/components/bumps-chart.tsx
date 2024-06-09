@@ -2,23 +2,14 @@
 
 import Chart from "react-bumps-chart";
 import classes from "./bumps-chart.module.css";
-import { useEffect, useState } from "react";
+import "react-bumps-chart/dist/style.css";
 import { useSearchParams } from "next/navigation";
 
 export default function BumpsChart({ data }: { data: any }) {
   const searchParams = useSearchParams();
 
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setVisible(true), 10);
-  }, []);
-
   return (
-    <div
-      className={classes.chart}
-      style={{ visibility: visible ? "visible" : "hidden" }}
-    >
+    <div className={classes.chart}>
       <Chart
         data={data}
         blades={searchParams.get("blades") === "true"}

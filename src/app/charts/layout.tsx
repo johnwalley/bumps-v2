@@ -33,7 +33,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 import clsx from "clsx";
 import { Button } from "@/components/ui/button";
-import { ExamplesNav } from "@/components/examples-nav";
+import { EventsNav } from "@/components/events-nav";
 import results from "./data/results.json";
 import {
   HoverCard,
@@ -83,7 +83,7 @@ export default function Layout({
   return (
     <div className="container relative lg:grid items-stretch gap-6 lg:grid-cols-[1fr_400px]">
       <div className="lg:hidden flex flex-col space-y-2 mt-2 mb-4">
-        <ExamplesNav />
+        <EventsNav />
         <Tabs
           value={segments[1]}
           className="relative grid w-full scroll-m-20 gap-4"
@@ -181,7 +181,7 @@ export default function Layout({
                 The first recorded bumps race was 1815.
               </HoverCardContent>
             </HoverCard>
-            <Link
+{/*             <Link
               href={`/charts/${segments[0]}/${segments[1]}/${
                 (results as any)[segments[0]][segments[1]][
                   (results as any)[segments[0]][segments[1]].length - 1
@@ -189,7 +189,7 @@ export default function Layout({
               }`}
             >
               Latest
-            </Link>
+            </Link> */}
             <YearPicker
               skipLength={256}
               focusElement={focusElement}
